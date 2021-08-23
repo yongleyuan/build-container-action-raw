@@ -13,6 +13,7 @@ runs:
   - name: Make date tag
     id: mkdatetage
     run: echo "::set-output name=dtag::$(date +%Y%m%d-%H%M)"
+    shell: bash
 
   - uses: actions/checkout@v2
 
@@ -25,6 +26,7 @@ runs:
       docker_repo=${GITHUB_REPOSITORY/opensciencegrid\/docker-/opensciencegrid/}
       tag_list=$docker_repo:$REPO,$docker_repo:$REPO-$TIMESTAMP
       echo "::set-output name=taglist::$tag_list"
+    shell: bash
 
   - name: Set up Docker Buildx
     uses: docker/setup-buildx-action@v1
