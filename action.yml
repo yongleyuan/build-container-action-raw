@@ -1,0 +1,13 @@
+name: 'Build Container Action'
+
+description: 'Builds and caches the image'
+
+inputs:
+  repo:
+    description: 'Input string that gets passed along to the docker build args'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+  
