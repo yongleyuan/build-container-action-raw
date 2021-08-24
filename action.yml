@@ -20,10 +20,13 @@ runs:
     id: generate-tag-list
     env:
       REPO: ${{ inputs.repo }}
-      TIMESTAMP: $(date +%Y%m%d-%H%M)
     run: |
       docker_repo=${GITHUB_REPOSITORY/opensciencegrid\/docker-/opensciencegrid/}
-      tag_list=$docker_repo:$REPO,$docker_repo:$(date +%Y%m%d-%H%M)
+      if [ -z "${{ inputs.tag_list }}" ]; then
+        tag_list=$docker_repo:$REPO,$docker_repo:$(date +%Y%m%d-%H%M)
+      else
+        tag_list=${{ inputs.tag_list }}
+      fi
       echo "::set-output name=taglist::$tag_list"
     shell: bash
 
