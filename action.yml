@@ -16,12 +16,12 @@ inputs:
 runs:
   using: "composite"
   steps:
+  - uses: actions/checkout@v2
+
   - name: Make date tag
     id: mkdatetage
     run: echo "::set-output name=dtag::$(date +%Y%m%d-%H%M)"
     shell: bash
-
-  - uses: actions/checkout@v2
 
   - name: Generate tag list
     id: generate-tag-list
