@@ -6,28 +6,21 @@ inputs:
   repo:
     description: 'Input string that gets passed along to the docker build args'
     required: true
-  docker_username:
-    description: 'Docker username in secret'
+  tag_list:
+    description: 'List of tags that gets passed along to the docker build args'
     required: true
-  docker_password:
-    description: 'Docker password in secret'
-    required: true
+    default: '' # set to an empty string
 
 runs:
   using: "composite"
   steps:
   - uses: actions/checkout@v2
 
-  - name: Make date tag
-    id: mkdatetage
-    run: echo "::set-output name=dtag::$(date +%Y%m%d-%H%M)"
-    shell: bash
-
   - name: Generate tag list
     id: generate-tag-list
     env:
       REPO: ${{ inputs.repo }}
-      TIMESTAMP: ${dtag}
+      TIMESTAMP: $(date +%Y%m%d-%H%M)
     run: |
       docker_repo=${GITHUB_REPOSITORY/opensciencegrid\/docker-/opensciencegrid/}
       tag_list=$docker_repo:$REPO,$docker_repo:$REPO-$TIMESTAMP
