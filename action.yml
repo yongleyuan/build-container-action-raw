@@ -23,7 +23,7 @@ runs:
       TIMESTAMP: $(date +%Y%m%d-%H%M)
     run: |
       docker_repo=${GITHUB_REPOSITORY/opensciencegrid\/docker-/opensciencegrid/}
-      tag_list=$docker_repo:$REPO,$docker_repo:$REPO-$TIMESTAMP
+      tag_list=$docker_repo:$REPO,$docker_repo:$(date +%Y%m%d-%H%M)
       echo "::set-output name=taglist::$tag_list"
     shell: bash
 
