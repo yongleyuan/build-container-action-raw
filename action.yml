@@ -41,7 +41,7 @@ runs:
       tags: "${{ steps.generate-tag-list.outputs.taglist }}"
   
   - name: Cache Docker images
-    uses: action/cache@v2
+    uses: actions/cache@v2
     with:
       path: /tmp/.base-buildx-cache
       key: base-buildx-${{ github.sha }}
