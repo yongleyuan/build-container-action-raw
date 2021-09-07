@@ -43,5 +43,5 @@ runs:
   - name: Cache Docker images
     uses: actions/cache@v2
     with:
-      path: /tmp/.base-buildx-cache
-      key: base-buildx-${{ github.sha }}
+      path: /tmp/.buildx-cache
+      key: ${{ inputs.repo }}-buildx-${{ github.sha }}-${{ github.run_id }}
