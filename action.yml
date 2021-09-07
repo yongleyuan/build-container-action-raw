@@ -45,3 +45,9 @@ runs:
     with:
       path: /tmp/.buildx-cache
       key: ${{ inputs.repo }}-buildx-${{ github.sha }}-${{ github.run_id }}
+
+  - name: Load Docker images
+    uses: actions/cache@v2
+    with:
+      path: /tmp/.buildx-cache
+      key: ${{ inputs.repo }}-buildx-${{ github.sha }}-${{ github.run_id }}
