@@ -59,5 +59,4 @@ runs:
       build-args: BASE_YUM_REPO=${{ inputs.repo }}
       load: True # allow acces to built images through the Docker CLI
       tags: ${{ inputs.taglist }}
-      target: stash-cache
       cache-from: type=local,src=/tmp/.buildx-cache
