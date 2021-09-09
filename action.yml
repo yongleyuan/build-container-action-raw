@@ -39,6 +39,7 @@ runs:
       push: false
       build-args: BASE_YUM_REPO=${{ inputs.repo }}
       tags: "${{ steps.generate-tag-list.outputs.taglist }}"
+      cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
   
   - name: Cache Docker images
     uses: actions/cache@v2
